@@ -37,7 +37,7 @@ with mp_face_detection.FaceDetection(model_selection=1, min_detection_confidence
 
                 nframe = frame[face_react[1]:face_react[1]+face_react[3], face_react[0]:face_react[0]+face_react[2]]
 
-                #predict(nframe, frame_counter)
+                predict(nframe, frame_counter)
                 #key_points = np.array([(p.x, p.y) for p in face.location_data.relative_keypoints])
                 #key_points_coords = np.multiply(key_points,[frame_width,frame_height]).astype(int)
                 #for p in key_points_coords:
