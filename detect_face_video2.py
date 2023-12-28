@@ -6,7 +6,7 @@ from predict import *
 mp_face_detection = mp.solutions.face_detection
 video_path = 'dataset/S_aida.mp4'
 
-# Crear un objeto VideoCapture
+ Crear un objeto VideoCapture
 cap = cv.VideoCapture(video_path)
 with mp_face_detection.FaceDetection(model_selection=1, min_detection_confidence=0.5) as face_detector:
     frame_counter = 0
