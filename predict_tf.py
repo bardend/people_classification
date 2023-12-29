@@ -1,13 +1,21 @@
+import face_recognition
+import mediapipe as mp
 import time
 import cv2 as cv
-import mediapipe as mp
+#import os
 import numpy as np
-from predict_tf import *
-mp_face_detection = mp.solutions.face_detection
-video_path = 'dataset/S_aida.mp4'
+import tensorflow as tf
+import matplotlib.pyplot as plt
+from PIL import Image , ImageDraw
+from predict2 import *
 
- Crear un objeto VideoCapture
-cap = cv.VideoCapture(video_path)
+from tensorflow.keras.models import load_model
+
+# Especifica la ruta donde guardaste el modelo
+model = load_model("model2/my_model_version_final_bon.h5")
+mp_face_detection = mp.solutions.face_detection
+cap = cv.VideoCapture(0)
+
 with mp_face_detection.FaceDetection(model_selection=1, min_detection_confidence=0.5) as face_detector:
     frame_counter = 0
     fonts = cv.FONT_HERSHEY_PLAIN
@@ -37,7 +45,7 @@ with mp_face_detection.FaceDetection(model_selection=1, min_detection_confidence
 
                 nframe = frame[face_react[1]:face_react[1]+face_react[3], face_react[0]:face_react[0]+face_react[2]]
 
-                predict_tf(nframe, frame_counter, model)
+                predict(nframe, frame, face_react, model)
                 #key_points = np.array([(p.x, p.y) for p in face.location_data.relative_keypoints])
                 #key_points_coords = np.multiply(key_points,[frame_width,frame_height]).astype(int)
                 #for p in key_points_coords:
